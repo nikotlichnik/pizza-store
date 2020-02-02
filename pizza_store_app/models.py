@@ -14,12 +14,27 @@ class Customer(models.Model):
         verbose_name_plural = 'покупатели'
 
 
+class Category(models.Model):
+    """
+    Describes product categories
+    """
+    name = models.CharField(verbose_name='Название', max_length=128)
+    display_order = price = models.PositiveSmallIntegerField(verbose_name='Порядок отображения',
+                                                             help_text='Чем меньше значение, тем выше в списке')
+
+    class Meta:
+        verbose_name = 'категория'
+        verbose_name_plural = 'категории'
+
+
 class Product(models.Model):
     """
     Describes products in catalog
     """
     name = models.CharField(verbose_name='Название', max_length=256)
     description = models.TextField(verbose_name='Описание', max_length=512)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, verbose_name='Категория продукта', null=True,
+                                 blank=True)
     image = models.ImageField(verbose_name='Изображение', upload_to='img/')
     price = models.PositiveIntegerField(verbose_name='Цена')
 
@@ -71,3 +86,15 @@ class OrderedItem(models.Model):
     class Meta:
         verbose_name = 'заказанный продукт'
         verbose_name_plural = 'заказанные продукты'
+
+
+class SellingParameter(models.Model):
+    """
+    Describes additional price values
+    """
+    key = models.CharField(verbose_name='Параметр', max_length=256)
+    value = models.PositiveIntegerField(verbose_name='Значение')
+
+    class Meta:
+        verbose_name = 'параметр'
+        verbose_name_plural = 'параметры'
