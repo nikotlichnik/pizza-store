@@ -1,0 +1,33 @@
+:root {
+    --orange: #e05b33;
+    --darkorange: #ca4b26;
+    --darkorange-opacity: rgba(202, 75, 38, 0.85);
+}
+
+body {
+    display: grid;
+    grid-template-areas: 'header' 'content' 'footer';
+    margin: 0;
+
+    font-family: 'Rubik', sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+.page-header{
+    display: flex;
+    padding: 10px 20px;
+
+    background-color: var(--orange);
+}
+
+.page-header__title{
+    color: white;
+    font-weight: 500;
+}
+
+.page-header__title a:visited{
+    color: white;
+}
