@@ -3,11 +3,11 @@
 {% block content %}
     {% for category, product_list in products %}
         <h3>{{ category }}</h3>
-        <ul>
+        <ul class="catalog">
             {% for product in product_list %}
-                <li>
-                    <h4><a href="{% url 'pizza_store_app:product_detail' product.id %}">{{ product.name }}</a></h4>
-                    <img class="product__image" src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
+                <li class="catalog__item">
+                    <h4 class="catalog__item-title"><a href="{% url 'pizza_store_app:product_detail' product.id %}">{{ product.name }}</a></h4>
+                    <img class="catalog__item-image" src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
                     <form>
                         {% csrf_token %}
 

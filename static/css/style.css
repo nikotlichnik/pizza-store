@@ -16,6 +16,11 @@ a{
     text-decoration: none;
 }
 
+img{
+    width: 100%;
+    height: auto;
+}
+
 .page-header{
     display: flex;
     padding: 10px 20px;
@@ -30,4 +35,39 @@ a{
 
 .page-header__title a:visited{
     color: white;
+}
+
+.catalog{
+    display: flex;
+    flex-wrap: wrap;
+
+    list-style: none;
+}
+
+.catalog__item{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 5px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+    border: 1px solid var(--darkorange);
+    border-radius: 5px;
+}
+
+.catalog__item-title{
+    order: 1;
+
+    color: black;
+    font-weight: 400;
+    text-align: center;
+}
+
+.catalog__item-title a{
+    color: gray;
+}
+
+.catalog__item-image{
+
 }
