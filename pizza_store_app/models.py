@@ -19,8 +19,11 @@ class Category(models.Model):
     Describes product categories
     """
     name = models.CharField(verbose_name='Название', max_length=128)
-    display_order = price = models.PositiveSmallIntegerField(verbose_name='Порядок отображения',
+    display_order = models.PositiveSmallIntegerField(verbose_name='Порядок отображения',
                                                              help_text='Чем меньше значение, тем выше в списке')
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'категория'
