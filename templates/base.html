@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza store</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="page-header">
+    <h1 class="page-header__title"><a href="{% url 'pizza_store_app:catalog' %}">PIZZA STORE</a></h1>
+    <nav class="page-header__nav auth-nav">
+        <ul class="auth-nav__list">
+            {% if user.username %}
+                <li class="auth-nav__item">
+                    <span class="auth-nav__username">{{ user.username }}</span>
+                    <a class="auth-nav__link" href="{% url 'loginsys_app:logout' %}">Sign out</a>
+                </li>
+            {% else %}
+                <li class="auth-nav__item">
+                    <a class="auth-nav__link" href="{% url 'loginsys_app:login' %}">Sign in</a>
+                </li>
+                <li class="auth-nav__item">
+                    <a class="auth-nav__link" href="{% url 'loginsys_app:signup' %}">Sign up</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+<main class="content">
+    {% block content %}{% endblock %}
+    {% block login %}{% endblock %}
+</main>
+</body>
+</html>

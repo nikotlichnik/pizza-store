@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block login %}
+    <section class="login">
+        <h2 class="login_title subtitle">Вход</h2>
+        <form class="login__form" action="{% url 'loginsys_app:login' %}" method="post">
+            {% csrf_token %}
+            <input class="login__field" type="text" name="username" placeholder="Логин" required>
+            <input class="login__field" type="password" name="password" placeholder="Пароль" required>
+            {% if login_error %}
+                <p>{{ login_error }}</p>
+            {% endif %}
+            <input class="login__button" type="submit" value="Войти">
+        </form>
+    </section>
+{% endblock %}
