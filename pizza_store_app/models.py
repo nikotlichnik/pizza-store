@@ -9,6 +9,9 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, )
     phone = models.CharField(verbose_name='Номер телефона', max_length=20)
 
+    def __str__(self):
+        return self.user.username
+
     class Meta:
         verbose_name = 'покупатель'
         verbose_name_plural = 'покупатели'
@@ -56,6 +59,9 @@ class CartItem(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Покупатель')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
     quantity = models.PositiveIntegerField(verbose_name='Количество')
+
+    def __str__(self):
+        return ' -- '.join(map(str,([self.customer, self.product, self.quantity])))
 
     class Meta:
         verbose_name = 'продукт корзины'

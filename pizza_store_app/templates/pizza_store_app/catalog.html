@@ -6,11 +6,10 @@
         <ul class="catalog">
             {% for product in product_list %}
                 <li class="catalog__item">
-                    <h4 class="catalog__item-title"><a
-                            href="{% url 'pizza_store_app:product_detail' product.id %}">{{ product.name }}</a></h4>
+                    <h4 class="catalog__item-title">{{ product.name }}</h4>
                     <p class="catalog__item-price">{{ product.price }}$</p>
                     <img class="catalog__item-image" src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
-                    <form class="catalog__item-form">
+                    <form class="catalog__item-form" method="post" action="{% url 'pizza_store_app:add_to_cart' %}">
                         {% csrf_token %}
                         <button class="catalog__item-minus">-</button>
                         <input class="catalog__item-quantity" name="product_quantity" type="number" min="0" max="100"

@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse, get_object_or_404, Http404
 from django.http import HttpResponse
 from django.views import generic
-from .models import Category, Product
+from django.contrib.auth.decorators import login_required
+from .models import Category, Product, CartItem, Customer
+
+MIN_PIZZA_COUNTER = 1
+MAX_PIZZA_COUNTER = 100
 
 
 def catalog(request):
@@ -17,6 +21,27 @@ def catalog(request):
         'products': products
     }
     return render(request, 'pizza_store_app/catalog.html', context)
+
+
+@login_required()
+def add_to_cart(request):
+    if request.method == 'POST':
+        product_id = request.POST['product_id']
+        product_quantity = int(request.POST['product_quantity'])
+
+        if product_quantity < MIN_PIZZA_COUNTER:
+            return Http404
+
+        product = get_object_or_404(Product, pk=product_id)
+        customer = Customer.objects.get(user=request.user)
+
+        cart_item, created = CartItem.objects.get_or_create(customer=customer, product=product,
+                                                            defaults={'quantity': product_quantity})
+        if not created:
+            cart_item.quantity += product_quantity
+            cart_item.save()
+
+    return redirect(reverse('pizza_store_app:catalog'))
 
 
 def product_detail(request, product_id):
