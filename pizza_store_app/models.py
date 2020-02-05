@@ -2,6 +2,30 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Currency(models.Model):
+    """
+    Describes currency types
+    """
+    DOLLAR = 'USD'
+    EURO = 'EUR'
+
+    CURRENCY_CHOICES = [
+        (DOLLAR, 'Dollar'),
+        (EURO, 'Euro')
+    ]
+
+    code = models.CharField(verbose_name='Валюта', max_length=3, choices=CURRENCY_CHOICES, default=DOLLAR)
+    rate_to_dollar = models.FloatField(verbose_name='Курс к доллару')
+    symbol = models.CharField(verbose_name='Символ', max_length=1)
+
+    def __str__(self):
+        return self.code
+
+    class Meta:
+        verbose_name = 'валюта'
+        verbose_name_plural = 'валюты'
+
+
 class Customer(models.Model):
     """
     Adds extra fields to User model
@@ -23,7 +47,7 @@ class Category(models.Model):
     """
     name = models.CharField(verbose_name='Название', max_length=128)
     display_order = models.PositiveSmallIntegerField(verbose_name='Порядок отображения',
-                                                             help_text='Чем меньше значение, тем выше в списке')
+                                                     help_text='Чем меньше значение, тем выше в списке')
 
     def __str__(self):
         return self.name
@@ -61,7 +85,7 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='Количество')
 
     def __str__(self):
-        return ' -- '.join(map(str,([self.customer, self.product, self.quantity])))
+        return ' -- '.join(map(str, ([self.customer, self.product, self.quantity])))
 
     class Meta:
         verbose_name = 'продукт корзины'
@@ -77,6 +101,7 @@ class Order(models.Model):
     address = models.TextField(verbose_name='Адрес доставки', max_length='1024')
     contact_phone = models.CharField(verbose_name='Контактный номер телефона', max_length=20)
     comment = models.TextField(verbose_name='Комментарий', max_length='1024')
+    currency = models.ForeignKey(Currency, on_delete=models.PROTECT, verbose_name='Валюта')
 
     class Meta:
         verbose_name = 'заказ'
