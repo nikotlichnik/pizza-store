@@ -16,6 +16,7 @@
                 <li class="auth-nav__item">
                     <span class="auth-nav__username">{{ user.username }}</span>
                     <a class="auth-nav__link" href="{% url 'loginsys_app:logout' %}">Sign out</a>
+                    <a class="auth-nav__link" href="{% url 'pizza_store_app:order_history' %}">Order history</a>
                 </li>
             {% else %}
                 <li class="auth-nav__item">

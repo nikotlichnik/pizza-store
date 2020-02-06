@@ -149,6 +149,7 @@ def transfer_cart_to_order(customer, order_obj):
 def checkout(request):
     customer = request.user.customer
     customer_form = CustomerForm(instance=customer)
+    cart_info = get_user_cart_info(request.user)
 
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST, instance=customer)
@@ -157,8 +158,11 @@ def checkout(request):
         comment = request.POST['order_comment']
         phone = customer.phone
         address = customer.address
+        total_price = cart_info['total_price_eur']
 
-        order_obj = Order.objects.create(customer=customer, contact_phone=phone, address=address, comment=comment)
+        order_obj = Order.objects.create(customer=customer, contact_phone=phone, address=address, comment=comment,
+                                         total_price=total_price)
+
         transfer_cart_to_order(customer, order_obj)
 
         return redirect(reverse('pizza_store_app:order_details', args=(order_obj.id,)))
@@ -171,9 +175,18 @@ def checkout(request):
     return render(request, 'pizza_store_app/order.html', context)
 
 
+@login_required()
 def order_history(request):
-    return HttpResponse('Orders history')
+    order_list = Order.objects.filter(customer=request.user.customer)
+
+    context = {
+        'cart_info': get_user_cart_info(request.user),
+        'order_list': order_list,
+    }
+
+    return render(request, 'pizza_store_app/order_history.html', context)
 
 
+@login_required()
 def order_details(request, order_id):
     return HttpResponse('Order details')

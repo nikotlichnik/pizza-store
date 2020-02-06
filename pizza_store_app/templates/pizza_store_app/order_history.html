@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Order history</h2>
+    <table>
+    <tr>
+        <th>#</th>
+        <th>Content</th>
+        <th>Total price</th>
+    </tr>
+        {% for order in order_list %}
+            <tr>
+                <td><a href="{% url 'pizza_store_app:order_details' order.id %}">{{ order.id | stringformat:"04d" }}</a></td>
+                <td>
+                    <ul>
+                        {% for ordered_item in order.ordereditem_set.all %}
+                            <li>{{ ordered_item.product.name }} - {{ ordered_item.quantity }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            <td>{{ order.total_price }}€</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
