@@ -26,6 +26,7 @@
                 </li>
             {% endif %}
         </ul>
+        <p><a href="{% url 'pizza_store_app:cart' %}">Cart items:</a> {{ cart_info.counter }} | {{ cart_info.cart_total_eur }}€ | {{ cart_info.cart_total_usd }}$</p>
     </nav>
 </header>
 <main class="content">
