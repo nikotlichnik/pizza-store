@@ -189,4 +189,11 @@ def order_history(request):
 
 @login_required()
 def order_details(request, order_id):
-    return HttpResponse('Order details')
+    order = get_object_or_404(Order, pk=order_id, customer=request.user.customer)
+
+    context = {
+        'cart_info': get_user_cart_info(request.user),
+        'order': order,
+    }
+
+    return render(request, 'pizza_store_app/order_detail.html', context)
