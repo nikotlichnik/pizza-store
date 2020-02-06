@@ -2,47 +2,38 @@
 
 {% block content %}
     <h2>Cart</h2>
-    <table>
-        <tr>
+    <table class="cart">
+        <tr class="cart__header-row">
             <th>#</th>
             <th>Product</th>
             <th>Quantity</th>
             <th>Price</th>
         </tr>
         {% for item in cart_items %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>
+            <tr class="cart__item-row">
+                <td class="cart__counter">{{ forloop.counter }}</td>
+                <td class="cart__item-name">
                     <img class="cart__item-image" src="{{ item.image }}" alt="{{ item.name }}" width="100">
                     <span>{{ item.name }}</span>
                 </td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.price }}€</td>
+                <td class="cart__item-quantity">
+                    <span>{{ item.quantity }}</span>
+                    <form action="{% url 'pizza_store_app:change_cart_quantity' %}" method="post">
+                        {% csrf_token %}
+                        <button class="cart__item-minus" name="action" value="minus">-</button>
+                        <button class="cart__item-plus" name="action" value="plus">+</button>
+                        <input type="hidden" name="product_id" value="{{ item.id }}">
+                    </form>
+                </td>
+                <td class="cart__item-price">{{ item.price }}€</td>
             </tr>
         {% endfor %}
     </table>
 
-    <p>TOTAL EUR: {{ cart_info.total_price_eur }}€</p>
+    <p>SUBTOTAL: {{ cart_info.cart_total_eur }}€</p>
+    <p>DELIVERY COST: {{ cart_info.delivery_price_eur }}€</p>
+    <p>TOTAL: {{ cart_info.total_price_eur }}€ | {{ cart_info.cart_total_usd }}$</p>
 
-    {% for category, product_list in products %}
-        <h3>{{ category }}</h3>
-        <ul class="catalog">
-            {% for product in product_list %}
-                <li class="catalog__item">
-                    <h4 class="catalog__item-title">{{ product.name }}</h4>
-                    <p class="catalog__item-price">{{ product.price }}$</p>
-                    <img class="catalog__item-image" src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
-                    <form class="catalog__item-form" method="post" action="{% url 'pizza_store_app:add_to_cart' %}">
-                        {% csrf_token %}
-                        <button class="catalog__item-minus">-</button>
-                        <input class="catalog__item-quantity" name="product_quantity" type="number" min="0" max="100"
-                               value="1" readonly>
-                        <button class="catalog__item-plus">+</button>
-                        <button type="submit" class="catalog__item-to-cart">To cart</button>
-                        <input type="hidden" name="product_id" value="{{ product.id }}">
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
+    <h2>Order</h2>
+
 {% endblock %}

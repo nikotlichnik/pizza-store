@@ -25,6 +25,8 @@ def catalog(request):
 
 @login_required()
 def add_to_cart(request):
+    anchor = ''
+
     if request.method == 'POST':
         product_id = request.POST['product_id']
         product_quantity = int(request.POST['product_quantity'])
@@ -40,11 +42,38 @@ def add_to_cart(request):
             cart_item.quantity += product_quantity
             cart_item.save()
 
-    return redirect(reverse('pizza_store_app:catalog'))
+        anchor = '#' + str(product.id)
+
+    return redirect(reverse('pizza_store_app:catalog') + anchor)
+
+
+@login_required()
+def change_cart_quantity(request):
+    anchor = ''
+
+    if request.method == 'POST':
+        print(request.POST['action'])
+        action = request.POST['action']
+        product_id = request.POST['product_id']
+        product = get_object_or_404(Product, pk=product_id)
+        cart_item = get_object_or_404(CartItem, customer=request.user.customer, product=product)
+        if action == 'minus':
+            cart_item.quantity -= 1
+        elif action == 'plus':
+            cart_item.quantity += 1
+
+        cart_item.save()
+
+        if cart_item.quantity == 0:
+            cart_item.delete()
+
+        anchor = '#' + str(product_id)
+
+    return redirect(reverse('pizza_store_app:cart') + anchor)
 
 
 def get_usd_price(eur_price):
-    return round(eur_price * DOLLAR_TO_EURO_RATE, 2)
+    return round(eur_price / DOLLAR_TO_EURO_RATE, 2)
 
 
 def get_user_cart_info(user_obj):
@@ -90,6 +119,7 @@ def cart(request):
     cart_items_set = CartItem.objects.filter(customer=customer).order_by('pk')
     for item in cart_items_set:
         cart_items.append({
+            'id': item.product.id,
             'name': item.product.name,
             'image': item.product.image.url,
             'quantity': item.quantity,
