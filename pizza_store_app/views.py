@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, Http404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Category, Product, CartItem, Customer, SellingParameter
+from .models import Category, Product, CartItem, Customer, SellingParameter, OrderedItem, Order
+from .forms import CustomerForm
 
 MIN_PIZZA_COUNTER = 1
 DOLLAR_TO_EURO_RATE = 0.91
@@ -134,13 +135,45 @@ def cart(request):
     return render(request, 'pizza_store_app/cart.html', context)
 
 
-def make_order(request):
-    return HttpResponse('Success page')
+def transfer_cart_to_order(customer, order_obj):
+    for cart_item in customer.cartitem_set.all():
+        product = cart_item.product
+        quantity = cart_item.quantity
+        price = cart_item.product.price
+
+        OrderedItem.objects.create(order=order_obj, product=product, quantity=quantity, price_per_item=price)
+        cart_item.delete()
+
+
+@login_required()
+def checkout(request):
+    customer = request.user.customer
+    customer_form = CustomerForm(instance=customer)
+
+    if request.method == 'POST':
+        customer_form = CustomerForm(request.POST, instance=customer)
+        customer_form.save()
+
+        comment = request.POST['order_comment']
+        phone = customer.phone
+        address = customer.address
+
+        order_obj = Order.objects.create(customer=customer, contact_phone=phone, address=address, comment=comment)
+        transfer_cart_to_order(customer, order_obj)
+
+        return redirect(reverse('pizza_store_app:order_details', args=(order_obj.id,)))
+
+    context = {
+        'cart_info': get_user_cart_info(request.user),
+        'form': customer_form,
+    }
+
+    return render(request, 'pizza_store_app/order.html', context)
 
 
 def order_history(request):
     return HttpResponse('Orders history')
 
 
-def order_details(request):
+def order_details(request, order_id):
     return HttpResponse('Order details')

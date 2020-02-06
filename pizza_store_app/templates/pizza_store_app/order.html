@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Checkout</h2>
+    <p>Items: {{ cart_info.counter }}</p>
+    <p>TOTAL SUM: {{ cart_info.total_price_eur }}€</p>
+    <form action="{% url 'pizza_store_app:checkout' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="order_comment">
+            Comment:
+            <textarea name="order_comment" id="order_comment" cols="30" rows="10" placeholder="Write something..."></textarea>
+        </label>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

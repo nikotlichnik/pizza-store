@@ -34,6 +34,6 @@
     <p>DELIVERY COST: {{ cart_info.delivery_price_eur }}€</p>
     <p>TOTAL: {{ cart_info.total_price_eur }}€ | {{ cart_info.cart_total_usd }}$</p>
 
-    <h2>Order</h2>
+    <a href="{% url 'pizza_store_app:checkout' %}">Proceed to checkout</a>
 
 {% endblock %}
