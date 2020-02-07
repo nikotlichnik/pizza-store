@@ -122,7 +122,7 @@ def cart(request):
         cart_items.append({
             'id': item.product.id,
             'name': item.product.name,
-            'image': item.product.image.url,
+            'image': item.product.image,
             'quantity': item.quantity,
             'price': item.quantity * item.product.price
         })

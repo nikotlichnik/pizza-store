@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
     {% for category, product_list in products %}
         <h3>{{ category }}</h3>
@@ -8,7 +8,7 @@
                 <li class="catalog__item" id="{{ product.id }}">
                     <h4 class="catalog__item-title">{{ product.name }}</h4>
                     <p class="catalog__item-price">{{ product.price }}€</p>
-                    <img class="catalog__item-image" src="{{ product.image.url }}" alt="{{ product.name }}" width="200">
+                    <img class="catalog__item-image" src="{% static 'pizza_store_app/img/'|add:product.image %}" alt="{{ product.name }}" width="200">
                     <form class="catalog__item-form" method="post" action="{% url 'pizza_store_app:add_to_cart' %}">
                         {% csrf_token %}
                         <button class="catalog__item-minus">-</button>

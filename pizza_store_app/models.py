@@ -42,7 +42,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание', max_length=512)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, verbose_name='Категория продукта', null=True,
                                  blank=True)
-    image = models.ImageField(verbose_name='Изображение', upload_to='img/')
+    image = models.CharField(verbose_name='Файл с изображением', max_length=512)
     price = models.PositiveIntegerField(verbose_name='Цена в евро')
 
     def __str__(self):

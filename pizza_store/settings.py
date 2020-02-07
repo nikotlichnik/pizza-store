@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'qwg7o$el6n(8r17(#lh5gwbaxu@x!=+c1a4-9o#bg8az5okk75'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://shtreis-pizza.herokuapp.com/']
+ALLOWED_HOSTS = ['shtreis-pizza.herokuapp.com']
 
 
 # Application definition
@@ -127,10 +127,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "upload")
-
-MEDIA_URL = '/upload/'
 
 LOGIN_URL = 'auth/login'
 LOGIN_REDIRECT_URL = '/'
