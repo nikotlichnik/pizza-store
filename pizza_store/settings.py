@@ -26,7 +26,7 @@ SECRET_KEY = 'qwg7o$el6n(8r17(#lh5gwbaxu@x!=+c1a4-9o#bg8az5okk75'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['shtreis-pizza.herokuapp.com']
+ALLOWED_HOSTS = ['https://shtreis-pizza.herokuapp.com/']
 
 
 # Application definition
