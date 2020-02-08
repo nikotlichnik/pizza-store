@@ -3,8 +3,8 @@
 {% block content %}
     <h2>Checkout</h2>
     {% if cart_info.counter != 0 %}
-        <p>ITEMS: {{ cart_info.counter }}</p>
-        <p>TOTAL SUM: {{ cart_info.total_price_eur }}€ <span
+        <p class="checkout-info">ITEMS: {{ cart_info.counter }}</p>
+        <p class="checkout-info">TOTAL SUM: {{ cart_info.total_price_eur }}€ <span
                 class="account__dollars"> ({{ cart_info.total_price_usd }}$)</span></p>
         <form class="login" action="{% url 'pizza_store_app:checkout' %}" method="post">
             {% csrf_token %}

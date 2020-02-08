@@ -366,7 +366,7 @@ h2 {
 
     color: grey;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
 
     text-align: center;
 }
@@ -478,6 +478,14 @@ h2 {
     font-size: 20px;
 
     color: grey;
+}
+
+.checkout-info{
+    text-align: center;
+}
+
+.checkout-info:last-of-type{
+    margin-bottom: 40px;
 }
 
 .button {
