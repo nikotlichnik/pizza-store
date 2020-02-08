@@ -187,7 +187,8 @@ h2 {
 }
 
 .login__field,
-.login input {
+.login input,
+.login textarea{
     width: 250px;
     height: 40px;
     padding: 5px;
@@ -199,6 +200,10 @@ h2 {
 
     border: 1px solid var(--darkorange);
     border-radius: 5px;
+}
+
+.login textarea{
+    height: 200px;
 }
 
 .login__button {
@@ -373,6 +378,7 @@ h2 {
 
 .cart {
     margin: 0 auto;
+    margin-bottom: 40px;
 }
 
 .cart td {
@@ -474,11 +480,11 @@ h2 {
     color: grey;
 }
 
-.button{
+.button {
     width: 300px;
     margin: 0 auto;
     margin-bottom: 30px;
-    padding: 2px 11px;
+    padding: 7px 11px;
 
     color: white;
 
@@ -493,9 +499,33 @@ h2 {
     cursor: pointer;
 }
 
-.button:hover{
+.button:hover {
     color: var(--darkorange);
     background: white;
+}
+
+.text-link {
+    text-decoration: none;
+    color: grey;
+}
+
+.text-link:hover {
+    border-bottom: 1px dashed darkslategrey;
+}
+
+
+.user-input {
+    width: 250px;
+    height: 40px;
+    padding: 5px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+
+    font-size: 22px;
+    font-family: 'Rubik', sans-serif;
+
+    border: 1px solid var(--darkorange);
+    border-radius: 5px;
 }
 
 .page-footer {
@@ -507,6 +537,7 @@ h2 {
 
     font-weight: 400;
 }
+
 
 .page-footer__link {
     text-decoration: none;

@@ -2,15 +2,25 @@
 
 {% block content %}
     <h2>Checkout</h2>
-    <p>Items: {{ cart_info.counter }}</p>
-    <p>TOTAL SUM: {{ cart_info.total_price_eur }}€</p>
-    <form action="{% url 'pizza_store_app:checkout' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <label for="order_comment">
-            Comment:
-            <textarea name="order_comment" id="order_comment" cols="30" rows="10" placeholder="Write something..."></textarea>
-        </label>
-        <button type="submit">Submit</button>
-    </form>
+    {% if cart_info.counter != 0 %}
+        <p>ITEMS: {{ cart_info.counter }}</p>
+        <p>TOTAL SUM: {{ cart_info.total_price_eur }}€ <span
+                class="account__dollars"> ({{ cart_info.total_price_usd }}$)</span></p>
+        <form class="login" action="{% url 'pizza_store_app:checkout' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p>
+                <label for="order_comment"> Comment:</label>
+                <textarea name="order_comment" id="order_comment" cols="30" rows="10"
+                          placeholder="Write something..."></textarea>
+            </p>
+
+
+            <button class="button" type="submit">Submit</button>
+        </form>
+    {% else %}
+        <p>Your cart is empty.</p>
+        <p>Let's go to <a class="text-link" href="{% url 'pizza_store_app:catalog' %}">products page</a> and order some
+            pizza!</p>
+    {% endif %}
 {% endblock %}

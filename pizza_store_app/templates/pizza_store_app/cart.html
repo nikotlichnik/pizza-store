@@ -3,62 +3,68 @@
 
 {% block content %}
     <h2>Cart</h2>
-    <table class="cart">
-        <colgroup>
-            <col class="col_counter">
-            <col class="col_product">
-            <col class="col_quantity">
-            <col class="col_price">
-        </colgroup>
-        <tr class="cart__header-row">
-            <th>#</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
-        </tr>
-        {% for item in cart_items %}
-            <tr class="cart__item-row">
-                <td class="cart__counter">{{ forloop.counter }}</td>
-                <td class="cart__item-name">
-                    <img class="cart__item-image" src="{% static 'pizza_store_app/img/'|add:item.image %}"
-                         alt="{{ item.name }}" width="100">
-                    <span>{{ item.name }}</span>
-                </td>
-                <td class="cart__item-quantity">
-                    <div class="cart__item-quantity-container">
-                        <span>{{ item.quantity }}</span>
-                        <form action="{% url 'pizza_store_app:change_cart_quantity' %}" method="post">
-                            {% csrf_token %}
-                            <button class="cart__item-minus" name="action" value="minus">-</button>
-                            <button class="cart__item-plus" name="action" value="plus">+</button>
-                            <input type="hidden" name="product_id" value="{{ item.id }}">
-                        </form>
-                    </div>
-                </td>
-                <td class="cart__item-price">{{ item.price }}€</td>
+    {% if cart_info.counter != 0 %}
+        <table class="cart">
+            <colgroup>
+                <col class="col_counter">
+                <col class="col_product">
+                <col class="col_quantity">
+                <col class="col_price">
+            </colgroup>
+            <tr class="cart__header-row">
+                <th>#</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for item in cart_items %}
+                <tr class="cart__item-row">
+                    <td class="cart__counter">{{ forloop.counter }}</td>
+                    <td class="cart__item-name">
+                        <img class="cart__item-image" src="{% static 'pizza_store_app/img/'|add:item.image %}"
+                             alt="{{ item.name }}" width="100">
+                        <span>{{ item.name }}</span>
+                    </td>
+                    <td class="cart__item-quantity">
+                        <div class="cart__item-quantity-container">
+                            <span>{{ item.quantity }}</span>
+                            <form action="{% url 'pizza_store_app:change_cart_quantity' %}" method="post">
+                                {% csrf_token %}
+                                <button class="cart__item-minus" name="action" value="minus">-</button>
+                                <button class="cart__item-plus" name="action" value="plus">+</button>
+                                <input type="hidden" name="product_id" value="{{ item.id }}">
+                            </form>
+                        </div>
+                    </td>
+                    <td class="cart__item-price">{{ item.price }}€</td>
+                </tr>
+            {% endfor %}
+        </table>
 
-    <table class="account">
-        <colgroup>
-            <col class="account__col-name">
-            <col class="account__col-value">
-        </colgroup>
-        <tr>
-            <td>SUBTOTAL</td>
-            <td>{{ cart_info.cart_total_eur }}€</td>
-        </tr>
-        <tr>
-            <td>DELIVERY COST</td>
-            <td>{{ cart_info.delivery_price_eur }}€</td>
-        </tr>
-        <tr>
-            <td>TOTAL</td>
-            <td>{{ cart_info.total_price_eur }}€ <span class="account__dollars"> ({{ cart_info.cart_total_usd }}$)</span></td>
-        </tr>
-    </table>
+        <table class="account">
+            <colgroup>
+                <col class="account__col-name">
+                <col class="account__col-value">
+            </colgroup>
+            <tr>
+                <td>SUBTOTAL</td>
+                <td>{{ cart_info.cart_total_eur }}€</td>
+            </tr>
+            <tr>
+                <td>DELIVERY COST</td>
+                <td>{{ cart_info.delivery_price_eur }}€</td>
+            </tr>
+            <tr>
+                <td>TOTAL</td>
+                <td>{{ cart_info.total_price_eur }}€ <span
+                        class="account__dollars"> ({{ cart_info.total_prixe_usd }}$)</span></td>
+            </tr>
+        </table>
 
-    <a class="button" href="{% url 'pizza_store_app:checkout' %}">Proceed to checkout</a>
-
+        <a class="button" href="{% url 'pizza_store_app:checkout' %}">Proceed to checkout</a>
+    {% else %}
+        <p>Your cart is empty.</p>
+        <p>Let's go to <a class="text-link" href="{% url 'pizza_store_app:catalog' %}">products page</a> and order some
+            pizza!</p>
+    {% endif %}
 {% endblock %}
