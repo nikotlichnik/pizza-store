@@ -3,11 +3,11 @@
 
 https://shtreis-pizza.herokuapp.com/
 
-Test account
+Test account:
 
-User: pizza
+**User**: pizza
 
-Password: 12345
+**Password**: 12345
 
 ## Run project locally with sqlite database:
 ```commandline
@@ -17,6 +17,6 @@ python manage.py runserver
 ```
 Test account:
 
-User: pizzaadmin
+**User**: pizzaadmin
 
-Password: 12345
+**Password**: 12345
