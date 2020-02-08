@@ -7,8 +7,8 @@ class Customer(models.Model):
     Adds extra fields to User model
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, )
-    phone = models.CharField(verbose_name='Номер телефона', max_length=20)
-    address = models.CharField(verbose_name='Адрес', max_length=1024)
+    phone = models.CharField(verbose_name='Phone', max_length=20)
+    address = models.CharField(verbose_name='Address', max_length=1024)
 
     def __str__(self):
         return self.user.username

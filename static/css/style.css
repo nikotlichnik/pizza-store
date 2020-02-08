@@ -248,7 +248,7 @@ h2 {
     list-style: none;
 }
 
-.catalog:last-child{
+.catalog:last-child {
     margin-bottom: 40px;
 }
 
@@ -352,7 +352,7 @@ h2 {
     background-color: white;
 }
 
-.catalog__item-cart-quantity{
+.catalog__item-cart-quantity {
     order: 5;
 
     margin: 0;
@@ -371,10 +371,132 @@ h2 {
     margin-bottom: 20px;
 }
 
-.cart__item-image {
-    width: 100px;
+.cart {
+    margin: 0 auto;
 }
 
+.cart td {
+    margin-bottom: 20px;
+}
+
+.cart th {
+    padding-bottom: 20px;
+}
+
+.col_counter {
+    width: 35px;
+}
+
+.cart__counter {
+    text-align: center;
+}
+
+.col_product {
+    min-width: 600px;
+}
+
+.cart__item-name {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.cart__item-image {
+    width: 100px;
+    margin-right: 50px;
+}
+
+.col_quantity {
+    width: 240px;
+}
+
+.cart__item-quantity {
+
+}
+
+.cart__item-quantity-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 72px;
+}
+
+.cart__item-plus,
+.cart__item-minus {
+    width: 42px;
+    align-self: center;
+
+    padding: 2px 11px;
+
+    color: var(--darkorange);
+
+    font-size: 22px;
+    font-family: 'Rubik', sans-serif;
+
+    background: none;
+    border: 1px solid var(--darkorange);
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.cart__item-plus:hover,
+.cart__item-minus:hover {
+    color: white;
+    background: var(--darkorange);
+}
+
+.cart__item-price {
+    text-align: center;
+    vertical-align: center;
+}
+
+.account {
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.account__col-name {
+    width: 250px;
+}
+
+.account__col-value {
+    width: 190px;
+}
+
+.account__dollars {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 20px;
+
+    color: grey;
+}
+
+.button{
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding: 2px 11px;
+
+    color: white;
+
+    font-size: 22px;
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+
+    background: var(--darkorange);
+    border: 1px solid var(--darkorange);
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.button:hover{
+    color: var(--darkorange);
+    background: white;
+}
 
 .page-footer {
     display: flex;
