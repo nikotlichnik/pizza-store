@@ -533,7 +533,6 @@ h2 {
 }
 
 ul.order-details__value{
-    margin: 0;
     padding: 0;
     padding-left: 70px;
 }
@@ -548,6 +547,41 @@ ul.order-details__value{
     margin-bottom: 40px;
 }
 
+.back{
+    font-weight: 400;
+}
+
+.history{
+    margin-bottom: 40px;
+}
+
+.history th{
+    padding-bottom: 20px;
+}
+
+.history li{
+    font-weight: 400;
+}
+
+.history__counter{
+    vertical-align: center;
+}
+
+.history-link{
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+.history-link:hover {
+    border-bottom: 1px dashed darkslategrey;
+}
+
+.history__product-name{
+        white-space: nowrap;
+}
+.history__price{
+    text-align: center;
+}
 .page-footer {
     display: flex;
     flex-direction: column;

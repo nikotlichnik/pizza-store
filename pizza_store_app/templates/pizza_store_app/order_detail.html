@@ -21,6 +21,8 @@
 
     {% if order.comment %}
         <h3 class="order-details__subtitle">Comment:</h3>
-        <p class="order-details__value">Comment: {{ order.comment }}</p>
+        <p class="order-details__value"> {{ order.comment }}</p>
     {% endif %}
+
+    <p class="back">Back to <a class="history-link" href="{% url 'pizza_store_app:order_history' %}">order history</a></p>
 {% endblock %}
