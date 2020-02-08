@@ -77,7 +77,7 @@ class Order(models.Model):
     date = models.DateTimeField(verbose_name='Дата', auto_now_add=True)
     address = models.TextField(verbose_name='Адрес доставки', max_length='1024')
     contact_phone = models.CharField(verbose_name='Контактный номер телефона', max_length=20)
-    comment = models.TextField(verbose_name='Комментарий', max_length='1024')
+    comment = models.TextField(verbose_name='Комментарий', max_length='1024', null=True, blank=True)
     total_price = models.PositiveIntegerField(verbose_name='Итоговая цена в евро')
 
     class Meta:

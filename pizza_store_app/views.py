@@ -99,8 +99,8 @@ def get_user_cart_info(user_obj):
 
     cart_price_usd = get_usd_price(cart_price_eur)
 
-    total_price_eur = cart_price_eur + delivery_price_eur
-    total_price_usd = cart_price_usd + delivery_price_usd
+    total_price_eur = round(cart_price_eur + delivery_price_eur, 2)
+    total_price_usd = round(cart_price_usd + delivery_price_usd, 2)
 
     return {'counter': items_counter,
             'cart_total_eur': cart_price_eur,

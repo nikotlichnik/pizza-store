@@ -188,7 +188,7 @@ h2 {
 
 .login__field,
 .login input,
-.login textarea{
+.login textarea {
     width: 250px;
     height: 40px;
     padding: 5px;
@@ -202,7 +202,7 @@ h2 {
     border-radius: 5px;
 }
 
-.login textarea{
+.login textarea {
     height: 200px;
 }
 
@@ -480,11 +480,11 @@ h2 {
     color: grey;
 }
 
-.checkout-info{
+.checkout-info {
     text-align: center;
 }
 
-.checkout-info:last-of-type{
+.checkout-info:last-of-type {
     margin-bottom: 40px;
 }
 
@@ -536,46 +536,46 @@ h2 {
     border-radius: 5px;
 }
 
-.order-details__subtitle{
+.order-details__subtitle {
     font-weight: 500;
 }
 
-ul.order-details__value{
+ul.order-details__value {
     padding: 0;
     padding-left: 70px;
 }
 
-.order-details__value{
+.order-details__value {
     font-weight: 400;
     padding-left: 50px;
 }
 
 
-.order-details__value:last-child{
+.order-details__value:last-child {
     margin-bottom: 40px;
 }
 
-.back{
+.back {
     font-weight: 400;
 }
 
-.history{
+.history {
     margin-bottom: 40px;
 }
 
-.history th{
+.history th {
     padding-bottom: 20px;
 }
 
-.history li{
+.history li {
     font-weight: 400;
 }
 
-.history__counter{
+.history__counter {
     vertical-align: center;
 }
 
-.history-link{
+.history-link {
     text-decoration: none;
     color: dodgerblue;
 }
@@ -584,12 +584,14 @@ ul.order-details__value{
     border-bottom: 1px dashed darkslategrey;
 }
 
-.history__product-name{
-        white-space: nowrap;
+.history__product-name {
+    white-space: nowrap;
 }
-.history__price{
+
+.history__price {
     text-align: center;
 }
+
 .page-footer {
     display: flex;
     flex-direction: column;

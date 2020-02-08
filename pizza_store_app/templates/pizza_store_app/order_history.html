@@ -2,6 +2,7 @@
 
 {% block content %}
     <h2>Order history</h2>
+    {% if order_list %}
     <table class="history">
         <colgroup>
             <col class="col_counter">
@@ -26,4 +27,9 @@
             </tr>
         {% endfor %}
     </table>
+    {% else %}
+        <p>Your order history is empty.</p>
+        <p>Let's go to <a class="text-link" href="{% url 'pizza_store_app:catalog' %}">products page</a> and order some
+            pizza!</p>
+    {% endif %}
 {% endblock %}
