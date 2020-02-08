@@ -2,14 +2,25 @@
 
 {% block content %}
     <h2>Order #{{ order.id | stringformat:"04d" }}</h2>
-                        <ul>
-                        {% for ordered_item in order.ordereditem_set.all %}
-                            <li>{{ ordered_item.product.name }} - {{ ordered_item.quantity }}</li>
-                        {% endfor %}
-                    </ul>
-    <p>Total price: {{ order.total_price }}</p>
-    <p>Address: {{ order.address }}</p>
-    <p>Contact phone: {{ order.contact_phone }}</p>
-    <p>Comment: {{ order.comment }}</p>
+    <h3 class="order-details__subtitle">Order contents:</h3>
+    <ul class="order-details__value">
+        {% for ordered_item in order.ordereditem_set.all %}
+            <li>{{ ordered_item.product.name }} - {{ ordered_item.quantity }}</li>
+        {% endfor %}
+    </ul>
 
+    <h3 class="order-details__subtitle">Total price:</h3>
+    <p class="order-details__value">{{ order.total_price }}€</p>
+
+    <h3 class="order-details__subtitle">Address:</h3>
+    <p class="order-details__value">{{ order.address }}</p>
+
+    <h3 class="order-details__subtitle">Contact phone:</h3>
+
+    <p class="order-details__value">{{ order.contact_phone }}</p>
+
+    {% if order.comment %}
+        <h3 class="order-details__subtitle">Comment:</h3>
+        <p class="order-details__value">Comment: {{ order.comment }}</p>
+    {% endif %}
 {% endblock %}

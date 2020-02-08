@@ -528,6 +528,26 @@ h2 {
     border-radius: 5px;
 }
 
+.order-details__subtitle{
+    font-weight: 500;
+}
+
+ul.order-details__value{
+    margin: 0;
+    padding: 0;
+    padding-left: 70px;
+}
+
+.order-details__value{
+    font-weight: 400;
+    padding-left: 50px;
+}
+
+
+.order-details__value:last-child{
+    margin-bottom: 40px;
+}
+
 .page-footer {
     display: flex;
     flex-direction: column;
