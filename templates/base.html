@@ -18,20 +18,20 @@
             <ul class="auth-nav__list">
                 {% if user.username %}
                     <li class="auth-nav__item">
-                        <span class="auth-nav__username">Hi, {{ user.username }}</span>
+                        <span class="auth-nav__username">Hi, {{ user.first_name }}</span>
                     </li>
                     <li class="auth-nav__item">
                         <a class="auth-nav__link" href="{% url 'pizza_store_app:order_history' %}">Order history</a>
                     </li>
                     <li class="auth-nav__item">
-                        <a class="auth-nav__link" href="{% url 'loginsys_app:logout' %}">Sign out</a>
+                        <a class="auth-nav__link" href="{% url 'loginsys_app:logout' %}">Sign Out</a>
                     </li>
                 {% else %}
                     <li class="auth-nav__item">
-                        <a class="auth-nav__link" href="{% url 'loginsys_app:login' %}">Sign in</a>
+                        <a class="auth-nav__link" href="{% url 'loginsys_app:login' %}">Sign In</a>
                     </li>
                     <li class="auth-nav__item">
-                        <a class="auth-nav__link" href="{% url 'loginsys_app:signup' %}">Sign up</a>
+                        <a class="auth-nav__link" href="{% url 'loginsys_app:signup' %}">Sign Up</a>
                     </li>
                 {% endif %}
             </ul>

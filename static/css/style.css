@@ -159,8 +159,84 @@ input[type=number]::-webkit-outer-spin-button {
 
 }
 
+.page-main {
+    display: grid;
+    grid-template-columns: 10vw 1fr 10vw;
+    align-content: start;
+}
+
 .page-main > * {
     grid-column: 2;
+}
+
+h2{
+    text-align: center;
+    font-weight: 500;
+}
+
+
+.login {
+    display: grid;
+    grid-template-areas: 'title' 'form';
+    justify-content: center;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login__field,
+.login input {
+    width: 250px;
+    height: 40px;
+    padding: 5px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+
+    font-size: 22px;
+    font-family: 'Rubik', sans-serif;
+
+    border: 1px solid var(--darkorange);
+    border-radius: 5px;
+}
+
+.login__button {
+    align-self: center;
+
+    padding: 10px 40px;
+
+    color: var(--darkorange);
+
+    font-size: 22px;
+    font-family: 'Rubik', sans-serif;
+
+    background: none;
+    border: 1px solid var(--darkorange);
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.login__button:hover {
+    color: white;
+    background: var(--darkorange);
+}
+
+.helptext,
+.login ul,
+.login p:empty {
+    display: none;
+}
+
+.login ul.errorlist{
+    display: block;
+}
+
+.login p {
+    width: 400px;
+    display: grid;
+    grid-template-columns: 155px 1fr;
 }
 
 .catalog {

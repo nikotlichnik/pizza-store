@@ -10,10 +10,14 @@ def signup(request):
         if form.is_valid():
             form.save(commit=True)
             return redirect(reverse('loginsys_app:login'))
+        else:
+            signup_error = form.errors
+    else:
+        form = UserRegisterForm()
 
     context = {
         'signup_error': signup_error,
-        'form': UserRegisterForm
+        'form': form
     }
 
     return render(request, 'loginsys_app/signup.html', context)
