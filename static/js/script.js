@@ -36,8 +36,8 @@
 
 
     products.forEach(function (product) {
-        var plusButton = product.querySelector('.catalog__item-plus');
-        var minusButton = product.querySelector('.catalog__item-minus');
+        var plusButton = product.querySelector('.catalog__item-button--plus');
+        var minusButton = product.querySelector('.catalog__item-button--minus');
         var quantityField = product.querySelector('.catalog__item-quantity');
 
         addQuantityButtonsClickListener(plusButton, minusButton, quantityField);
