@@ -5,37 +5,59 @@
     <meta charset="UTF-8">
     <title>Pizza store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static "pizza_store_app/img/favicon.ico" %}">
 </head>
 <body>
 <header class="page-header">
-    <h1 class="page-header__title"><a href="{% url 'pizza_store_app:catalog' %}">PIZZA STORE</a></h1>
-    <nav class="page-header__nav auth-nav">
-        <ul class="auth-nav__list">
-            {% if user.username %}
-                <li class="auth-nav__item">
-                    <span class="auth-nav__username">{{ user.username }}</span>
-                    <a class="auth-nav__link" href="{% url 'loginsys_app:logout' %}">Sign out</a>
-                    <a class="auth-nav__link" href="{% url 'pizza_store_app:order_history' %}">Order history</a>
-                </li>
-            {% else %}
-                <li class="auth-nav__item">
-                    <a class="auth-nav__link" href="{% url 'loginsys_app:login' %}">Sign in</a>
-                </li>
-                <li class="auth-nav__item">
-                    <a class="auth-nav__link" href="{% url 'loginsys_app:signup' %}">Sign up</a>
-                </li>
+    <div class="page-header__container">
+        <h1 class="page-header__title"><a href="{% url 'pizza_store_app:catalog' %}">PIZZA STORE</a></h1>
+        <nav class="page-header__nav auth-nav">
+            <ul class="auth-nav__list">
+                {% if user.username %}
+                    <li class="auth-nav__item">
+                        <span class="auth-nav__username">Hi, {{ user.username }}</span>
+                    </li>
+                    <li class="auth-nav__item">
+                        <a class="auth-nav__link" href="{% url 'pizza_store_app:order_history' %}">Order history</a>
+                    </li>
+                    <li class="auth-nav__item">
+                        <a class="auth-nav__link" href="{% url 'loginsys_app:logout' %}">Sign out</a>
+                    </li>
+                {% else %}
+                    <li class="auth-nav__item">
+                        <a class="auth-nav__link" href="{% url 'loginsys_app:login' %}">Sign in</a>
+                    </li>
+                    <li class="auth-nav__item">
+                        <a class="auth-nav__link" href="{% url 'loginsys_app:signup' %}">Sign up</a>
+                    </li>
+                {% endif %}
+            </ul>
+            {% if cart_info and cart_info.counter != 0 %}
+                <p class="page-header__cart-info">
+                    <a class="page-header__cart-link" href="{% url 'pizza_store_app:cart' %}">Cart
+                        items: {{ cart_info.counter }} | {{ cart_info.cart_total_eur }}€
+                        <span class="page-header__cart-dollars"> ({{ cart_info.cart_total_usd }}$)</span>
+                    </a>
+                </p>
             {% endif %}
-        </ul>
-        <p><a href="{% url 'pizza_store_app:cart' %}">Cart items:</a> {{ cart_info.counter }} | {{ cart_info.cart_total_eur }}€ | {{ cart_info.cart_total_usd }}$</p>
-    </nav>
+
+        </nav>
+    </div>
 </header>
-<main class="content">
+<main class="page-main">
     {% block content %}{% endblock %}
     {% block login %}{% endblock %}
 </main>
+<footer class="page-footer">
+    <p class="page-footer__copyright">Developed by
+        <a class="page-footer__link" href="https://github.com/nikotlichnik/pizza-store">
+            Shtreis Nikita
+        </a>
+    </p>
+</footer>
 <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
